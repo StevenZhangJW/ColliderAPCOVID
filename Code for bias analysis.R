@@ -24,3 +24,12 @@ RHRcal <- function(HR1, HR2 ,se1, se2, Scor=NULL){
   return(res)
 }
 
+
+RHR_bs <- function(Simresults){
+  RHR_res  <- Simresults %>%
+  group_by(Population, Pollutant) %>%
+  summarise(RHR_median=median(RHR),
+            RHR_lowerCI=quantile(RHR,0.025),
+            RHR_upperCI=quantile(RHR,0.975))
+  return(RHR_res)
+ }
